@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="905183bb-2185-449a-b494-7d9777becad2" name="Changes" comment="" />
+    <list default="true" id="905183bb-2185-449a-b494-7d9777becad2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/EditorialsMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/ImagesMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/NoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/Notice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/NoticeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/NoticeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/TrabalhoOOP/AppTest.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "jhondev123"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jhondev123&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/jhondev123/trabalhoOOP.git",
-    "accountId": "5ff6b30e-e961-4b2d-bd90-4215cd11f25c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jhondev123/trabalhoOOP.git&quot;,
+    &quot;accountId&quot;: &quot;5ff6b30e-e961-4b2d-bd90-4215cd11f25c&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2xW5i7k16sfDPrWISyXdG289XhI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,20 +53,26 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.App.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Java/trabalhoOOP",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.39" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.39" />
       </set>
     </attachedChunks>
   </component>
@@ -58,10 +85,37 @@
       <option name="presentableId" value="Default" />
       <updated>1748041112847</updated>
       <workItem from="1748041114054" duration="123000" />
+      <workItem from="1748116405006" duration="1672000" />
+      <workItem from="1748120575802" duration="4384000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/NoticeMapper.java</url>
+          <line>33</line>
+          <properties class="com.TrabalhoOOP.Mappers.Ibge.NoticeMapper" method="jsonToNotices">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

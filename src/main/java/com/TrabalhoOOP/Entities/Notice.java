@@ -13,14 +13,14 @@ public class Notice {
     private String introduction;
     private LocalDate publishDate;
     private String productId;
-    private List<Product> products;
+    private String products;
     private List<NoticeImage> images;
     private List <Editory> editorials;
     private List<Product> productsRelated;
     private Boolean contrast;
     private String link;
 
-    public Notice(NoticeType noticeType, String id, String title, String introduction, LocalDate publishDate, String productId, List<Product> products, List<NoticeImage> images, List<Editory> editorials, List<Product> productsRelated, Boolean contrast, String link) {
+    public Notice(NoticeType noticeType, String id, String title, String introduction, LocalDate publishDate, String productId, String products, List<NoticeImage> images, List<Editory> editorials, List<Product> productsRelated, Boolean contrast, String link) {
         this.noticeType = noticeType;
         this.id = id;
         this.title = title;
