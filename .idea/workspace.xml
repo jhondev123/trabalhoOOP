@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="905183bb-2185-449a-b494-7d9777becad2" name="Changes" comment="feat: criando o mapeamento dos dados recebidos do Ibge">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/ProductsMapper.java" afterDir="false" />
+    <list default="true" id="905183bb-2185-449a-b494-7d9777becad2" name="Changes" comment="feat: finalizando a consulta de noticias e começando a criar um cadastro do usuário acessando">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/NoticeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/NoticeImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/NoticeImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/ImagesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/ImagesMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/NoticeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/NoticeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +79,7 @@
       <updated>1748041112847</updated>
       <workItem from="1748041114054" duration="123000" />
       <workItem from="1748116405006" duration="1672000" />
-      <workItem from="1748120575802" duration="6965000" />
+      <workItem from="1748120575802" duration="7551000" />
     </task>
     <task id="LOCAL-00001" summary="feat: criando o mapeamento dos dados recebidos do Ibge">
       <option name="closed" value="true" />
@@ -95,7 +89,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748125590051</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: finalizando a consulta de noticias e começando a criar um cadastro do usuário acessando">
+      <option name="closed" value="true" />
+      <created>1748153759506</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1748153759506</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,6 +105,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: criando o mapeamento dos dados recebidos do Ibge" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: criando o mapeamento dos dados recebidos do Ibge" />
+    <MESSAGE value="feat: finalizando a consulta de noticias e começando a criar um cadastro do usuário acessando" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: finalizando a consulta de noticias e começando a criar um cadastro do usuário acessando" />
   </component>
 </project>
