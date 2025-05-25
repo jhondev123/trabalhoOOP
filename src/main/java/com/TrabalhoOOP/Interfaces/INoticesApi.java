@@ -7,5 +7,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface INoticesApi {
-    public List<Notice> getAllNotices() throws IOException, InterruptedException;
+    public List<Notice> getAllNotices(int qtd) throws IOException, InterruptedException;
 }

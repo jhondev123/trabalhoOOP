@@ -27,11 +27,11 @@ public class IbgeNoticeAdapter implements INoticesApi {
         this.gson = gson;
     }
     @Override
-    public List<Notice> getAllNotices() throws IOException, InterruptedException {
+    public List<Notice> getAllNotices(int qtd) throws IOException, InterruptedException {
 
         // prepara a request
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(URL + "/noticias"))
+                .uri(URI.create(URL + "/noticias"+ "?qtd=" + qtd))
                 .header("accept", "application/json")
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

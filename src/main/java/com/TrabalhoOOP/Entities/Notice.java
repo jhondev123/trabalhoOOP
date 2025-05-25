@@ -52,4 +52,20 @@ public class Notice {
                 ", link='" + link + '\'' +
                 '}';
     }
+
+    public LocalDate getPublishDate() {
+        return publishDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public NoticeType getNoticeType() {
+        return noticeType;
+    }
+
+    public String getId() {
+        return id;
+    }
 }
