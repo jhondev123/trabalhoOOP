@@ -10,11 +10,13 @@ import java.util.List;
 
 public class NoticeController {
     private final INoticesApi noticesApi;
+    private final List<Notice> notices = new ArrayList<>();
     public NoticeController(INoticesApi noticesApi) {
         this.noticesApi = noticesApi;
     }
     public List<Notice> getAllNotices() throws IOException, InterruptedException {
-          noticesApi.getAllNotices();
-          return new ArrayList<Notice>();
+        notices.clear();
+        notices.addAll(noticesApi.getAllNotices());
+        return notices;
     }
 }

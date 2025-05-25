@@ -12,8 +12,10 @@ import java.util.Map;
 
 public class ImagesMapper {
     public static NoticeImage jsonToImage(String data){
+        String URL_API_IMAGES = "https://agenciadenoticias.ibge.gov.br";
         return new NoticeImage(
-                data
+                data,
+                URL_API_IMAGES
         );
     }
 

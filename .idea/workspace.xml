@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="905183bb-2185-449a-b494-7d9777becad2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/EditorialsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/ImagesMapper.java" afterDir="false" />
+    <list default="true" id="905183bb-2185-449a-b494-7d9777becad2" name="Changes" comment="feat: criando o mapeamento dos dados recebidos do Ibge">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/ProductsMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/NoticeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/Notice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/NoticeImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/NoticeImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/ImagesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/ImagesMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/NoticeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/NoticeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/TrabalhoOOP/AppTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,36 +85,24 @@
       <updated>1748041112847</updated>
       <workItem from="1748041114054" duration="123000" />
       <workItem from="1748116405006" duration="1672000" />
-      <workItem from="1748120575802" duration="4384000" />
+      <workItem from="1748120575802" duration="6965000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: criando o mapeamento dos dados recebidos do Ibge">
+      <option name="closed" value="true" />
+      <created>1748125590051</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1748125590051</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Mappers/Ibge/NoticeMapper.java</url>
-          <line>33</line>
-          <properties class="com.TrabalhoOOP.Mappers.Ibge.NoticeMapper" method="jsonToNotices">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: criando o mapeamento dos dados recebidos do Ibge" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: criando o mapeamento dos dados recebidos do Ibge" />
   </component>
 </project>
