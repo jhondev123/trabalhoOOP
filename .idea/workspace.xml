@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="905183bb-2185-449a-b494-7d9777becad2" name="Changes" comment="feat: finalizando a consulta de noticias e começando a criar um cadastro do usuário acessando">
+    <list default="true" id="905183bb-2185-449a-b494-7d9777becad2" name="Changes" comment="feat: criando funcionalidades para criar listas de favoritos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Adapters/IbgeNoticeAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Controllers/NoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/Editory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/Editory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Entities/Notice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Interfaces/INoticesApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TrabalhoOOP/Interfaces/INoticesApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,23 +46,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Java/trabalhoOOP&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Java/trabalhoOOP",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -83,7 +82,7 @@
       <workItem from="1748041114054" duration="123000" />
       <workItem from="1748116405006" duration="1672000" />
       <workItem from="1748120575802" duration="7551000" />
-      <workItem from="1748201846728" duration="4729000" />
+      <workItem from="1748201846728" duration="7139000" />
     </task>
     <task id="LOCAL-00001" summary="feat: criando o mapeamento dos dados recebidos do Ibge">
       <option name="closed" value="true" />
@@ -101,7 +100,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748153759506</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: criando funcionalidades para criar listas de favoritos">
+      <option name="closed" value="true" />
+      <created>1748206672160</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748206672160</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +117,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: criando o mapeamento dos dados recebidos do Ibge" />
     <MESSAGE value="feat: finalizando a consulta de noticias e começando a criar um cadastro do usuário acessando" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: finalizando a consulta de noticias e começando a criar um cadastro do usuário acessando" />
+    <MESSAGE value="feat: criando funcionalidades para criar listas de favoritos" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: criando funcionalidades para criar listas de favoritos" />
   </component>
 </project>

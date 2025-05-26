@@ -19,6 +19,7 @@ public class Notice {
     private List<Product> productsRelated;
     private Boolean contrast;
     private String link;
+    public Boolean read = false;
 
     public Notice(NoticeType noticeType, String id, String title, String introduction, LocalDate publishDate, String productId, String products, List<NoticeImage> images, List<Editory> editorials, List<Product> productsRelated, Boolean contrast, String link) {
         this.noticeType = noticeType;
@@ -37,20 +38,13 @@ public class Notice {
 
     @Override
     public String toString() {
-        return "Notice{" +
-                "noticeType=" + noticeType +
-                ", id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", introduction='" + introduction + '\'' +
-                ", publishDate=" + publishDate +
-                ", productId='" + productId + '\'' +
-                ", products=" + products +
-                ", images=" + images +
-                ", editorials=" + editorials +
-                ", productsRelated=" + productsRelated +
-                ", contrast=" + contrast +
-                ", link='" + link + '\'' +
-                '}';
+        return  "Titulo: " + title + '\n' +
+                "Id: " + id + '\n' +
+                "Introdução: " + introduction + '\n' +
+                "Data de publicação: " + publishDate + '\n' +
+                "Link: " + link + '\n' +
+                "Tipo de Notícia: " + noticeType + '\n' +
+                "Fonte: " + editorials.toString() + '\n';
     }
 
     public LocalDate getPublishDate() {
@@ -68,4 +62,5 @@ public class Notice {
     public String getId() {
         return id;
     }
+
 }

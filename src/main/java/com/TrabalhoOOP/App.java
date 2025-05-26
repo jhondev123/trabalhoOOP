@@ -58,12 +58,11 @@ public class App {
     private List<Notice> getNotices() throws IOException, InterruptedException {
         return noticeController.getAllNotices(3);
     }
-    private void ListNotices(List<Notice> notices) {
+    private void listNotices(List<Notice> notices) {
         for (Notice notice : notices) {
             System.out.println(notice.toString());
         }
     }
-
     private User createUser() {
         System.out.print("Digite seu nome: ");
         String name = sc.nextLine();
@@ -101,10 +100,9 @@ public class App {
                 notices
         );
 
-        ListNotices(filteredNotices);
+        listNotices(filteredNotices);
     }
-    private void createFavorites()
-    {
+    private void createFavorites() {
         System.out.println("Digite o id da noticia que deseja adicionar aos favoritos: ");
         String id = sc.nextLine();
         Optional<Notice> matchedNotice = notices.stream()
@@ -126,9 +124,9 @@ public class App {
             return;
         }
         favorites.add(matchedNotice.get());
+        System.out.println("Notícia adicionada aos favoritos.");
     }
-    private void removeFavorites()
-    {
+    private void removeFavorites() {
         System.out.println("Digite o id da noticia que deseja remover dos favoritos: ");
         String id = sc.nextLine();
         Optional<Notice> matchedNotice = favorites.stream()
@@ -142,7 +140,121 @@ public class App {
         }
         favorites.remove(matchedNotice.get());
     }
-    private void showMenu(User user) {
+    private void MarkAsRead() {
+        System.out.println("Digite o id da noticia que deseja marcar como lida: ");
+        String id = sc.nextLine();
+        Optional<Notice> matchedNotice = notices.stream()
+                .filter(notice -> notice.getId().equals(id))
+                .findFirst();
+
+        if(!matchedNotice.isPresent())
+        {
+            System.out.println("Noticia não encontrada.");
+            return;
+        }
+        matchedNotice.get().read = true;
+        System.out.println("Notícia marcada como lida.");
+    }
+   private void listNoticesRead() {
+         List<Notice> readNotices = notices.stream()
+                .filter(notice -> notice.read)
+                .toList();
+         if(readNotices.isEmpty()) {
+              System.out.println("Nenhuma notícia lida encontrada.");
+              return;
+         }
+         listNotices(readNotices);
+   }
+   private void createToSeeLater(){
+        System.out.println("Digite o id da noticia que deseja criar para ver depois: ");
+        String id = sc.nextLine();
+        Optional<Notice> matchedNotice = notices.stream()
+                .filter(notice -> notice.getId().equals(id))
+                .findFirst();
+
+        if(!matchedNotice.isPresent())
+        {
+            System.out.println("Noticia não encontrada.");
+            return;
+        }
+        toSeeLater.add(matchedNotice.get());
+        System.out.println("Notícia adicionada para ver depois.");
+   }
+   private void removeToSeeLater() {
+        System.out.println("Digite o id da noticia que deseja remover para ver depois: ");
+        String id = sc.nextLine();
+        Optional<Notice> matchedNotice = toSeeLater.stream()
+                .filter(notice -> notice.getId().equals(id))
+                .findFirst();
+
+        if(!matchedNotice.isPresent())
+        {
+            System.out.println("Noticia não encontrada para ver depois.");
+            return;
+        }
+        toSeeLater.remove(matchedNotice.get());
+        System.out.println("Notícia removida para ver depois.");
+   }
+   private void listOrderNotices() {
+       System.out.println("Qual lista deseja ordenar? ");
+       System.out.println("[1] - Todas as notícias");
+       System.out.println("[2] - As favoritas");
+       System.out.println("[3] - As notícias para ver depois");
+       System.out.println("[4] - Cancelar");
+       String option = sc.nextLine();
+       List<Notice> noticesToOrder;
+       switch (option) {
+              case "1":
+                noticesToOrder = notices;
+                break;
+              case "2":
+                noticesToOrder = favorites;
+                break;
+              case "3":
+                noticesToOrder = toSeeLater;
+                break;
+              case "4":
+                return;
+              default:
+                System.out.println("Opção inválida, tente novamente.");
+                listOrderNotices();
+                return;
+       }
+
+        boolean alphabet = false;
+        boolean publishDate = false;
+        boolean type = false;
+        System.out.println("Deseja ordenar as notícias por ordem Alfabética? (S/N): ");
+        String alphabetOption = sc.nextLine();
+        if (alphabetOption.equalsIgnoreCase("S")) {
+            alphabet = true;
+        } else if (!alphabetOption.equalsIgnoreCase("N")) {
+            System.out.println("Opção inválida, tente novamente.");
+            listOrderNotices();
+            return;
+        }
+        System.out.println("Deseja ordar as notícias por data de publicação? (S/N): ");
+        String publishDateOption = sc.nextLine();
+        if (publishDateOption.equalsIgnoreCase("S")) {
+            publishDate = true;
+        } else if (!publishDateOption.equalsIgnoreCase("N")) {
+            System.out.println("Opção inválida, tente novamente.");
+            listOrderNotices();
+            return;
+        }
+        System.out.println("Deseja Ordenar pelo tipo da noícia? (S/N): ");
+        String typeOption = sc.nextLine();
+        if (typeOption.equalsIgnoreCase("S")) {
+            type = true;
+        } else if (!typeOption.equalsIgnoreCase("N")) {
+            System.out.println("Opção inválida, tente novamente.");
+            listOrderNotices();
+            return;
+        }
+        List<Notice> orderedNotices = noticeController.orderNotices(noticesToOrder, alphabet, publishDate, type);
+        listNotices(orderedNotices);
+   }
+   private void showMenu(User user) {
         System.out.println("Olá " + user.name + ", seja bem-vindo ao sistema!");
         // todas as noticias
         System.out.println("[1] - Consultar notícias");
@@ -168,7 +280,7 @@ public class App {
         switch (option) {
             case "1":
                 // listar todas as noticias
-                ListNotices(notices);
+                listNotices(notices);
                 break;
             case "2":
                 // filtrar noticias
@@ -184,23 +296,31 @@ public class App {
                 break;
             case "5":
                 // listar favoritos
-                ListNotices(favorites);
+                listNotices(favorites);
                 break;
             case "6":
-                // marcar como lidas
+                // marcar como lida
+                MarkAsRead();
                 break;
             case "7":
-                // criar para ver depois
+                // listas as lidas
+                listNoticesRead();
                 break;
             case "8":
-                // remover para ver depois
+                // criar para ver depois
+                createToSeeLater();
                 break;
             case "9":
-                // listar para ver depois
-                ListNotices(toSeeLater);
+                // remover para ver depois
+                removeToSeeLater();
                 break;
             case "10":
+                // listar para ver depois
+                listNotices(toSeeLater);
+                break;
+            case "11":
                 // ordenar listas
+                listOrderNotices();
                 break;
             case "0":
                 System.out.println("Saindo...");
