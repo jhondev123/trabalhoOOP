@@ -45,7 +45,15 @@ public class App {
             App app = new App();
             app.run();
         } catch (Exception e) {
-            System.out.println("Ocorreu um erro inesperado: " + e.getMessage());
+            System.out.println("Ocorreu um erro na execução do programa: " + e.getMessage());
+            System.out.println("Gostaria de tentar reabrir o sistema? (S/N)");
+            Scanner scanner = new Scanner(System.in);
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("S")) {
+                main(args);
+            } else {
+                System.out.println("Obrigado por usar o sistema!");
+            }
         }
     }
 
