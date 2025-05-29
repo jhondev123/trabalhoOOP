@@ -24,11 +24,11 @@ public class NoticeMapper {
 
         return new Notice(
                 noticeType,
-                data.get("id").toString(),
+                (int)Double.parseDouble(data.get("id").toString()),
                 data.get("titulo").toString(),
                 data.get("introducao").toString(),
                 LocalDate.parse(data.get("data_publicacao").toString(), formatter),
-                data.get("produto_id").toString(),
+                (int)Double.parseDouble(data.get("produto_id").toString()),
                 data.get("produtos").toString(),
                 ImagesMapper.jsonToImages(data.get("imagens").toString()),
                 EditorialsMapper.jsonToEditorials(data.get("editorias").toString()),
