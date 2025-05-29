@@ -1,11 +1,14 @@
 package com.TrabalhoOOP;
 
 import com.TrabalhoOOP.Adapters.IbgeNoticeAdapter;
+import com.TrabalhoOOP.Adapters.JsonPersistAdapter;
 import com.TrabalhoOOP.Controllers.NoticeController;
 import com.TrabalhoOOP.Controllers.UserController;
 import com.TrabalhoOOP.Entities.Notice;
 import com.TrabalhoOOP.Entities.User;
 import com.TrabalhoOOP.Interfaces.INoticesApi;
+import com.TrabalhoOOP.Interfaces.IPersist;
+import com.TrabalhoOOP.Repository.NoticeRepository;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -31,12 +34,17 @@ public class App {
         this.sc = new Scanner(System.in);
 
         HttpClient httpClient = HttpClient.newHttpClient();
+        Gson gson = new Gson();
+        IPersist persistAdapter = new JsonPersistAdapter(gson);
+
         INoticesApi noticeApi = new IbgeNoticeAdapter(
                 httpClient,
-                new Gson()
+                gson,
+                persistAdapter
         );
+        NoticeRepository repository = new NoticeRepository(persistAdapter,noticeApi);
 
-        this.noticeController = new NoticeController(noticeApi);
+        this.noticeController = new NoticeController(noticeApi,repository);
         this.userController = new UserController();
     }
 
@@ -57,14 +65,24 @@ public class App {
         }
     }
 
-    public void run() throws IOException, InterruptedException {
-        notices = getNotices();
+    public void run() throws Exception {
+        notices = getNotices(sc);
         User user = createUser();
         System.out.println("Olá " + user.name + ", seja bem-vindo ao sistema!");
         showMenu();
     }
 
-    private List<Notice> getNotices() throws IOException, InterruptedException {
+    private List<Notice> getNotices(Scanner sc) throws Exception {
+        System.out.println("Quer consultar notícias locais? (S/N) ");
+        String option = sc.nextLine();
+        if (option.equalsIgnoreCase("S")) {
+            try {
+                return noticeController.getLocalNotices();
+            } catch (Exception e) {
+                System.out.println("Erro ao carregar notícias locais: " + e.getMessage());
+                return new ArrayList<>();
+            }
+        }
         return noticeController.getAllNotices(3);
     }
     private void listNotices(List<Notice> notices) {

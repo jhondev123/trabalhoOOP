@@ -3,6 +3,7 @@ package com.TrabalhoOOP.Adapters;
 
 import com.TrabalhoOOP.Entities.Notice;
 import com.TrabalhoOOP.Interfaces.INoticesApi;
+import com.TrabalhoOOP.Interfaces.IPersist;
 import com.TrabalhoOOP.Mappers.Ibge.NoticeMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -13,7 +14,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,12 +22,14 @@ public class IbgeNoticeAdapter implements INoticesApi {
     private String URL = "http://servicodados.ibge.gov.br/api/v3";
     private HttpClient client;
     private Gson gson;
-    public IbgeNoticeAdapter(HttpClient httpClient, Gson gson) {
+    private IPersist persist;
+    public IbgeNoticeAdapter(HttpClient httpClient, Gson gson, IPersist persist) {
         this.client = httpClient;
         this.gson = gson;
+        this.persist = persist;
     }
     @Override
-    public List<Notice> getAllNotices(int qtd) throws IOException, InterruptedException {
+    public List<Notice> getAllNotices(int qtd) throws IOException, InterruptedException,Exception {
 
         // prepara a request
         HttpRequest request = HttpRequest.newBuilder()
@@ -38,8 +40,12 @@ public class IbgeNoticeAdapter implements INoticesApi {
 
         // transformando as noticias em uma lista que eu consiga manipular
         Type responseType = new TypeToken<Map<String, Object>>(){}.getType();
-        Map<String, Object> data = gson.fromJson(response.body(), responseType);
+
+        Map<String, Object> data = gson.fromJson(response.body(), responseType);;
         List<Map<String, Object>> items = (List<Map<String, Object>>) data.get("items");
+
+        String json = gson.toJson(items);
+        persist.save(json);
 
         return NoticeMapper.jsonToNotices(items.toArray());
     }

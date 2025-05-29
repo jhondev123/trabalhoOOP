@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class Notice extends  Entity {
+public class Notice   {
     private NoticeType noticeType;
     private int id;
     private String title;
@@ -64,4 +64,19 @@ public class Notice extends  Entity {
         return id;
     }
 
+    public String toJson() {
+        return "{\n" +
+                "  \"id\": " + id + ",\n" +
+                "  \"title\": \"" + title + "\",\n" +
+                "  \"introduction\": \"" + introduction + "\",\n" +
+                "  \"publishDate\": \"" + publishDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\",\n" +
+                "  \"productId\": " + productId + ",\n" +
+                "  \"products\": \"" + products + "\",\n" +
+                "  \"images\": " + images.toString() + ",\n" +
+                "  \"editorials\": " + editorials.toString() + ",\n" +
+                "  \"productsRelated\": " + productsRelated.toString() + ",\n" +
+                "  \"contrast\": " + contrast + ",\n" +
+                "  \"link\": \"" + link + "\"\n" +
+                "}";
+    }
 }

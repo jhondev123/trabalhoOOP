@@ -3,6 +3,7 @@ package com.TrabalhoOOP.Controllers;
 
 import com.TrabalhoOOP.Entities.Notice;
 import com.TrabalhoOOP.Interfaces.INoticesApi;
+import com.TrabalhoOOP.Repository.NoticeRepository;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -14,12 +15,19 @@ import java.util.stream.Collectors;
 public class NoticeController {
     private final INoticesApi noticesApi;
     private final List<Notice> notices = new ArrayList<>();
-    public NoticeController(INoticesApi noticesApi) {
+    private NoticeRepository repository;
+    public NoticeController(INoticesApi noticesApi, NoticeRepository repository) {
         this.noticesApi = noticesApi;
+        this.repository = repository;
     }
-    public List<Notice> getAllNotices(int qtd) throws IOException, InterruptedException {
+    public List<Notice> getAllNotices(int qtd) throws Exception {
         notices.clear();
         notices.addAll(noticesApi.getAllNotices(qtd));
+        return notices;
+    }
+    public List<Notice> getLocalNotices() throws Exception {
+        notices.clear();
+        notices.addAll(repository.loadNotices());
         return notices;
     }
     public List<Notice> filterNotices(LocalDate date,String title, String keyWords, List<Notice> noticesToFilter) {
