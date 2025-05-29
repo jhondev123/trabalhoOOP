@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class Notice {
+public class Notice extends  Entity {
     private NoticeType noticeType;
     private int id;
     private String title;
