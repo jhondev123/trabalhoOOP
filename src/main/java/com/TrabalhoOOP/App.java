@@ -42,7 +42,7 @@ public class App {
                 gson,
                 persistAdapter
         );
-        NoticeRepository repository = new NoticeRepository(persistAdapter,noticeApi);
+        NoticeRepository repository = new NoticeRepository(persistAdapter,noticeApi,gson);
 
         this.noticeController = new NoticeController(noticeApi,repository);
         this.userController = new UserController();
@@ -80,9 +80,9 @@ public class App {
                 return noticeController.getLocalNotices();
             } catch (Exception e) {
                 System.out.println("Erro ao carregar notícias locais: " + e.getMessage());
-                return new ArrayList<>();
             }
         }
+        System.out.println("Consultando notícias do IBGE...");
         return noticeController.getAllNotices(3);
     }
     private void listNotices(List<Notice> notices) {

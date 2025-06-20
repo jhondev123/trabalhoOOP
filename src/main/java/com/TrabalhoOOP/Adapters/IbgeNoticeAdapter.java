@@ -40,11 +40,11 @@ public class IbgeNoticeAdapter implements INoticesApi {
 
         // transformando as noticias em uma lista que eu consiga manipular
         Type responseType = new TypeToken<Map<String, Object>>(){}.getType();
+        String json = response.body();
+        Map<String, Object> data = gson.fromJson(response.body(), responseType);
 
-        Map<String, Object> data = gson.fromJson(response.body(), responseType);;
         List<Map<String, Object>> items = (List<Map<String, Object>>) data.get("items");
 
-        String json = gson.toJson(items);
         persist.save(json);
 
         return NoticeMapper.jsonToNotices(items.toArray());

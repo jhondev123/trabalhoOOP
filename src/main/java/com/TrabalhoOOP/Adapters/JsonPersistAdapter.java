@@ -27,30 +27,10 @@ public class JsonPersistAdapter implements IPersist {
     @Override
     public void save(String json) throws Exception {
         Path filePath = Paths.get(FILE_PATH);
-        File file = filePath.toFile();
-
         Files.createDirectories(filePath.getParent());
 
-        Type listType = new TypeToken<List<Object>>() {}.getType();
-        List<Object> currentItems = new ArrayList<>();
-
-        if (file.exists()) {
-            String content = new String(Files.readAllBytes(filePath)).trim();
-            if (!content.isEmpty()) {
-                currentItems = gson.fromJson(content, listType);
-            }
-        }
-
-        if (json.trim().startsWith("[")) {
-            List<Object> newItems = gson.fromJson(json, listType);
-            currentItems.addAll(newItems);
-        } else {
-            Object newItem = gson.fromJson(json, Object.class);
-            currentItems.add(newItem);
-        }
-
-        try (FileWriter writer = new FileWriter(file)) {
-            gson.toJson(currentItems, writer);
+        try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
+            writer.write(json);
         }
     }
 
