@@ -80,9 +80,9 @@ public class App {
                 return noticeController.getLocalNotices();
             } catch (Exception e) {
                 System.out.println("Erro ao carregar notícias locais: " + e.getMessage());
-                return new ArrayList<>();
             }
         }
+        System.out.println("Consultando notícias no IBGE...");
         return noticeController.getAllNotices(3);
     }
     private void listNotices(List<Notice> notices) {
