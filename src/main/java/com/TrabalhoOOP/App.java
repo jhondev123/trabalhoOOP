@@ -10,14 +10,7 @@ import com.TrabalhoOOP.Interfaces.INoticesApi;
 import com.TrabalhoOOP.Interfaces.IPersist;
 import com.TrabalhoOOP.Repository.NoticeRepository;
 import com.google.gson.Gson;
-
-import java.io.IOException;
 import java.net.http.HttpClient;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class App {
@@ -25,27 +18,23 @@ public class App {
     private final NoticeController noticeController;
     private final UserController userController;
     private final Scanner sc;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private List<Notice> notices;
-    private List<Notice> favorites = new ArrayList<Notice>();
-    private List<Notice> toSeeLater = new ArrayList<Notice>();
-
     public App() {
+
         this.sc = new Scanner(System.in);
 
         HttpClient httpClient = HttpClient.newHttpClient();
         Gson gson = new Gson();
-        IPersist persistAdapter = new JsonPersistAdapter(gson);
+        IPersist persistAdapter = new JsonPersistAdapter();
 
         INoticesApi noticeApi = new IbgeNoticeAdapter(
                 httpClient,
                 gson,
                 persistAdapter
         );
-        NoticeRepository repository = new NoticeRepository(persistAdapter,noticeApi);
+        NoticeRepository repository = new NoticeRepository(persistAdapter,noticeApi,gson);
 
-        this.noticeController = new NoticeController(noticeApi,repository);
-        this.userController = new UserController();
+        this.noticeController = new NoticeController(noticeApi,repository,sc);
+        this.userController = new UserController(sc);
     }
 
     public static void main(String[] args) {
@@ -66,227 +55,12 @@ public class App {
     }
 
     public void run() throws Exception {
-        notices = getNotices(sc);
-        User user = createUser();
+        noticeController.getNotices(sc);
+        User user = userController.createUser();
         System.out.println("Olá " + user.name + ", seja bem-vindo ao sistema!");
         showMenu();
     }
 
-    private List<Notice> getNotices(Scanner sc) throws Exception {
-        System.out.println("Quer consultar notícias locais? (S/N) ");
-        String option = sc.nextLine();
-        if (option.equalsIgnoreCase("S")) {
-            try {
-                return noticeController.getLocalNotices();
-            } catch (Exception e) {
-                System.out.println("Erro ao carregar notícias locais: " + e.getMessage());
-                return new ArrayList<>();
-            }
-        }
-        return noticeController.getAllNotices(3);
-    }
-    private void listNotices(List<Notice> notices) {
-        for (Notice notice : notices) {
-            System.out.println(notice.toString());
-        }
-    }
-    private User createUser() {
-        System.out.print("Digite seu nome: ");
-        String name = sc.nextLine();
-        System.out.print("Digite seu apelido: ");
-        String nickName = sc.nextLine();
-        return userController.CreateUser(name, nickName);
-    }
-    private void filterNotices(List<Notice> notices) {
-        System.out.println("Digite a data da noticia no formato dd/MM/yyyy: ");
-        String date = sc.nextLine();
-        LocalDate localDate;
-        // caso não passe a data não filtra por ela
-        if(date.isEmpty()){
-            localDate = null;
-        } else {
-            try {
-                localDate = LocalDate.parse(date, formatter);
-            } catch (Exception e) {
-                System.out.println("Data inválida, por favor digite novamente.");
-                filterNotices(notices);
-                return;
-            }
-        }
-
-        System.out.println("Digite o título da noticia: ");
-        String title = sc.nextLine();
-
-        System.out.println("Digite as palavras-chave separadas por vírgula: ");
-        String keyWords = sc.nextLine();
-
-        List<Notice> filteredNotices = noticeController.filterNotices(
-                localDate,
-                title,
-                keyWords,
-                notices
-        );
-
-        listNotices(filteredNotices);
-    }
-    private void createFavorites() {
-        System.out.println("Digite o id da noticia que deseja adicionar aos favoritos: ");
-        int id = GetId(sc);
-
-
-        Optional<Notice> matchedNotice = notices.stream()
-                .filter(notice -> notice.getId() == id)
-                .findFirst();
-
-        Optional<Notice> matchedNoticeFavorite = favorites.stream()
-                .filter(notice -> notice.getId() == id)
-                .findFirst();
-
-        if(!matchedNotice.isPresent())
-        {
-            System.out.println("Noticia não encontrada.");
-            createFavorites();
-        }
-        if(matchedNoticeFavorite.isPresent())
-        {
-            System.out.println("Noticia já está nos favoritos.");
-            return;
-        }
-        favorites.add(matchedNotice.get());
-        System.out.println("Notícia adicionada aos favoritos.");
-    }
-    private void removeFavorites() {
-        System.out.println("Digite o id da noticia que deseja remover dos favoritos: ");
-        int id = GetId(sc);
-
-        Optional<Notice> matchedNotice = favorites.stream()
-                .filter(notice -> notice.getId() == id)
-                .findFirst();
-
-        if(!matchedNotice.isPresent())
-        {
-            System.out.println("Noticia não encontrada nos favoritos.");
-            return;
-        }
-        favorites.remove(matchedNotice.get());
-    }
-    private void MarkAsRead() {
-        System.out.println("Digite o id da noticia que deseja marcar como lida: ");
-        int id = GetId(sc);
-
-        Optional<Notice> matchedNotice = notices.stream()
-                .filter(notice -> notice.getId() == id)
-                .findFirst();
-
-        if(!matchedNotice.isPresent())
-        {
-            System.out.println("Noticia não encontrada.");
-            return;
-        }
-        matchedNotice.get().read = true;
-        System.out.println("Notícia marcada como lida.");
-    }
-   private void listNoticesRead() {
-         List<Notice> readNotices = notices.stream()
-                .filter(notice -> notice.read)
-                .toList();
-         if(readNotices.isEmpty()) {
-              System.out.println("Nenhuma notícia lida encontrada.");
-              return;
-         }
-         listNotices(readNotices);
-   }
-   private void createToSeeLater(){
-        System.out.println("Digite o id da noticia que deseja criar para ver depois: ");
-       int id = GetId(sc);
-
-       Optional<Notice> matchedNotice = notices.stream()
-                .filter(notice -> notice.getId() == id)
-                .findFirst();
-
-        if(!matchedNotice.isPresent())
-        {
-            System.out.println("Noticia não encontrada.");
-            return;
-        }
-        toSeeLater.add(matchedNotice.get());
-        System.out.println("Notícia adicionada para ver depois.");
-   }
-   private void removeToSeeLater() {
-        System.out.println("Digite o id da noticia que deseja remover para ver depois: ");
-       int id = GetId(sc);
-
-       Optional<Notice> matchedNotice = toSeeLater.stream()
-                .filter(notice -> notice.getId() == id)
-                .findFirst();
-
-        if(!matchedNotice.isPresent())
-        {
-            System.out.println("Noticia não encontrada para ver depois.");
-            return;
-        }
-        toSeeLater.remove(matchedNotice.get());
-        System.out.println("Notícia removida para ver depois.");
-   }
-   private void listOrderNotices() {
-       System.out.println("Qual lista deseja ordenar? ");
-       System.out.println("[1] - Todas as notícias");
-       System.out.println("[2] - As favoritas");
-       System.out.println("[3] - As notícias para ver depois");
-       System.out.println("[4] - Cancelar");
-       String option = sc.nextLine();
-       List<Notice> noticesToOrder;
-       switch (option) {
-              case "1":
-                noticesToOrder = notices;
-                break;
-              case "2":
-                noticesToOrder = favorites;
-                break;
-              case "3":
-                noticesToOrder = toSeeLater;
-                break;
-              case "4":
-                return;
-              default:
-                System.out.println("Opção inválida, tente novamente.");
-                listOrderNotices();
-                return;
-       }
-
-        boolean alphabet = false;
-        boolean publishDate = false;
-        boolean type = false;
-        System.out.println("Deseja ordenar as notícias por ordem Alfabética? (S/N): ");
-        String alphabetOption = sc.nextLine();
-        if (alphabetOption.equalsIgnoreCase("S")) {
-            alphabet = true;
-        } else if (!alphabetOption.equalsIgnoreCase("N")) {
-            System.out.println("Opção inválida, tente novamente.");
-            listOrderNotices();
-            return;
-        }
-        System.out.println("Deseja ordar as notícias por data de publicação? (S/N): ");
-        String publishDateOption = sc.nextLine();
-        if (publishDateOption.equalsIgnoreCase("S")) {
-            publishDate = true;
-        } else if (!publishDateOption.equalsIgnoreCase("N")) {
-            System.out.println("Opção inválida, tente novamente.");
-            listOrderNotices();
-            return;
-        }
-        System.out.println("Deseja Ordenar pelo tipo da notícia? (S/N): ");
-        String typeOption = sc.nextLine();
-        if (typeOption.equalsIgnoreCase("S")) {
-            type = true;
-        } else if (!typeOption.equalsIgnoreCase("N")) {
-            System.out.println("Opção inválida, tente novamente.");
-            listOrderNotices();
-            return;
-        }
-        List<Notice> orderedNotices = noticeController.orderNotices(noticesToOrder, alphabet, publishDate, type);
-        listNotices(orderedNotices);
-   }
    private void showMenu() {
        System.out.println("\n ---------------------------------");
 
@@ -317,47 +91,47 @@ public class App {
         switch (option) {
             case "1":
                 // listar todas as noticias
-                listNotices(notices);
+                noticeController.listNotices(noticeController.notices);
                 break;
             case "2":
                 // filtrar noticias
-                filterNotices(notices);
+                noticeController.executeFilterNotices(noticeController.notices);
                 break;
             case "3":
                 // criar favoritos
-                createFavorites();
+                noticeController.createFavorites();
                 break;
             case "4":
                 // remover favoritos
-                removeFavorites();
+                noticeController.removeFavorites();
                 break;
             case "5":
                 // listar favoritos
-                listNotices(favorites);
+                noticeController.listNotices(noticeController.favorites);
                 break;
             case "6":
                 // marcar como lida
-                MarkAsRead();
+                noticeController.MarkAsRead();
                 break;
             case "7":
                 // listas as lidas
-                listNoticesRead();
+                noticeController.listNoticesRead();
                 break;
             case "8":
                 // criar para ver depois
-                createToSeeLater();
+                noticeController.createToSeeLater();
                 break;
             case "9":
                 // remover para ver depois
-                removeToSeeLater();
+                noticeController.removeToSeeLater();
                 break;
             case "10":
                 // listar para ver depois
-                listNotices(toSeeLater);
+                noticeController.listNotices(noticeController.toSeeLater);
                 break;
             case "11":
                 // ordenar listas
-                listOrderNotices();
+                noticeController.listOrderNotices();
                 break;
             case "0":
                 System.out.println("Saindo...");
@@ -368,16 +142,5 @@ public class App {
         }
         // chama o menu novamente
         showMenu();
-    }
-// utils
-    private int GetId(Scanner sc)
-    {
-        String id = sc.nextLine();
-        try {
-            return Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            System.out.println("Id inválido, por favor digite um número.");
-            return GetId(sc);
-        }
     }
 }

@@ -1,32 +1,26 @@
 package com.TrabalhoOOP.Adapters;
 
 import com.TrabalhoOOP.Interfaces.IPersist;
-import com.TrabalhoOOP.Mappers.Ibge.NoticeMapper;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class JsonPersistAdapter implements IPersist {
-    private static final String FILE_PATH = "C:\\Java\\trabalhoOOP\\src\\main\\java\\com\\TrabalhoOOP\\Data\\notices.json";
+    private static final String FILE_PATH = "src/main/java/com/TrabalhoOOP/Data/notices.json";
 
-    private Gson gson;
-    public JsonPersistAdapter(Gson gson) {
-        this.gson = gson;
+    public JsonPersistAdapter() {
     }
 
     @Override
     public void save(String json) throws Exception {
-        Path filePath = Paths.get(FILE_PATH);
+        Path basePath = Paths.get("").toAbsolutePath(); // Pasta onde o app está rodando
+        Path filePath = basePath.resolve(FILE_PATH);
         Files.createDirectories(filePath.getParent());
 
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
@@ -36,7 +30,8 @@ public class JsonPersistAdapter implements IPersist {
 
     @Override
     public String load() throws Exception {
-        Path filePath = Paths.get(FILE_PATH);
+        Path basePath = Paths.get("").toAbsolutePath();
+        Path filePath = basePath.resolve(FILE_PATH);
         File file = filePath.toFile();
 
         if (!file.exists()) {
