@@ -27,3 +27,7 @@ fica responsável por pegar a Lista genérica e transformar em uma Lista da minh
 As entidades do projeto estão na pasta Model, eu criei entidades para todos os possíveis dados da api.
 Os dados que vinham em listas eu criei Classes para eles e na Notice defini uma lista dessa classe
 
+### 5. Registros em memória
+Os registros eles ficam armazenados em memória no NoticeController, onde eu tenho 
+3 listas, a lista de notícias geral, a lista de notícias lidas e a lista de notícias favoritas.
+
