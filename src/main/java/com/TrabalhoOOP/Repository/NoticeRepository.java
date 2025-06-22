@@ -20,10 +20,7 @@ public class NoticeRepository {
         this.noticesApi = noticesApi;
         this.gson = gson;
     }
-    public void saveNotice(String json) throws Exception {
-        persist.save(json);
-    }
-    public List<Notice> loadNotices() throws Exception {
+    public List<Notice> load() throws Exception {
         String json = persist.load();
         if (json == null || json.isEmpty()) {
             throw new Exception("No data found");

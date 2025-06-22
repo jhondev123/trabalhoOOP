@@ -2,12 +2,10 @@ package com.TrabalhoOOP.Controllers;
 
 
 import com.TrabalhoOOP.Entities.Notice;
-import com.TrabalhoOOP.Entities.User;
 import com.TrabalhoOOP.Interfaces.INoticesApi;
 import com.TrabalhoOOP.Repository.NoticeRepository;
 import com.TrabalhoOOP.Utils.InputUtilities;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -15,10 +13,10 @@ import java.util.stream.Collectors;
 
 public class NoticeController {
     private final INoticesApi noticesApi;
-    private NoticeRepository repository;
-    public List<Notice> notices = new ArrayList<Notice>();
-    public List<Notice> favorites = new ArrayList<Notice>();
-    public List<Notice> toSeeLater = new ArrayList<Notice>();
+    private final NoticeRepository repository;
+    public List<Notice> notices = new ArrayList<>();
+    public List<Notice> favorites = new ArrayList<>();
+    public List<Notice> toSeeLater = new ArrayList<>();
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final Scanner sc;
     private final int QUANTIDADE_REGISTROS = 10;
@@ -29,14 +27,14 @@ public class NoticeController {
         this.sc = sc;
     }
 
-    public List<Notice> getAllNotices(int qtd) throws Exception {
+    public List<Notice> getRemoteNotices(int qtd) throws Exception {
         notices.clear();
         notices.addAll(noticesApi.getAllNotices(qtd));
         return notices;
     }
     public List<Notice> getLocalNotices() throws Exception {
         notices.clear();
-        notices.addAll(repository.loadNotices());
+        notices.addAll(repository.load());
         return notices;
     }
     public List<Notice> filterNotices(LocalDate date,String title, String keyWords, List<Notice> noticesToFilter) {
@@ -82,18 +80,18 @@ public class NoticeController {
                 .sorted(comparator)
                 .collect(Collectors.toList());
     }
-    public List<Notice> getNotices(Scanner sc) throws Exception {
+    public void getNotices(Scanner sc) throws Exception {
         System.out.println("Quer consultar notícias locais? (S/N) ");
         String option = InputUtilities.GetSorN(sc);
         if (option.equalsIgnoreCase("S")) {
             try {
-                return getLocalNotices();
+                getLocalNotices();
             } catch (Exception e) {
                 System.out.println("Erro ao carregar notícias locais: " + e.getMessage());
             }
         }
         System.out.println("Consultando notícias do IBGE...");
-        return getAllNotices(QUANTIDADE_REGISTROS);
+        getRemoteNotices(QUANTIDADE_REGISTROS);
     }
     public void listNotices(List<Notice> notices) {
         for (Notice notice : notices) {

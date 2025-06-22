@@ -4,7 +4,6 @@ import com.TrabalhoOOP.Adapters.IbgeNoticeAdapter;
 import com.TrabalhoOOP.Adapters.JsonPersistAdapter;
 import com.TrabalhoOOP.Controllers.NoticeController;
 import com.TrabalhoOOP.Controllers.UserController;
-import com.TrabalhoOOP.Entities.Notice;
 import com.TrabalhoOOP.Entities.User;
 import com.TrabalhoOOP.Interfaces.INoticesApi;
 import com.TrabalhoOOP.Interfaces.IPersist;
